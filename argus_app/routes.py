@@ -3,7 +3,13 @@ from flask import Blueprint, request, jsonify, render_template
 from models import ScanResult
 from .controllers import *
 
-app_blueprint = Blueprint('app',__name__,template_folder='templates')
+app_blueprint = Blueprint(
+    'app',
+    __name__,
+    template_folder='templates',
+    static_folder='static',
+    static_url_path='/app/static'
+)
 
 @app_blueprint.route('/')
 def index():
