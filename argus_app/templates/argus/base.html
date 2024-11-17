@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARGUS - {% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    {% block extra_scripts %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('app.index') }}">Home</a>
+            <a href="{{ url_for('app.scanner') }}">Scanner</a>
+            <a href="{{ url_for('app.report') }}">Report</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 ARGUS Project</p>
+    </footer>
+</body>
+
+</html>

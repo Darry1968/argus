@@ -1,0 +1,20 @@
+{% extends 'argus/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to ARGUS</h1>
+<p>ARGUS is an API vulnerability scanner designed to detect and mitigate risks in APIs.</p>
+<section id="architecture">
+    <h2>Architecture</h2>
+    <img src="{{ url_for('static', filename='images/architecture-diagram.png') }}" alt="Architecture Diagram">
+</section>
+<section id="how-it-works">
+    <h2>How It Works</h2>
+    <ol>
+        <li>Enter the API endpoint.</li>
+        <li>Choose scan type.</li>
+        <li>View the results and download the report.</li>
+    </ol>
+</section>
+{% endblock %}

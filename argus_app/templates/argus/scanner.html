@@ -1,0 +1,20 @@
+{% extends 'argus/base.html' %}
+
+{% block title %}Scanner Tool{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/scanner.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<h1>API Scanner Tool</h1>
+<form id="scanner-form">
+    <label for="api-endpoint">Enter API Endpoint:</label>
+    <input type="text" id="api-endpoint" placeholder="https://api.example.com">
+    <button type="button" id="run-scan-web">Run Scan on Web</button>
+</form>
+<section id="results">
+    <h2>Results</h2>
+    <div id="results-output">No results yet...</div>
+</section>
+{% endblock %}

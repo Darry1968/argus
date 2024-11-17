@@ -3,12 +3,16 @@ from flask import Blueprint, request, jsonify, render_template
 from models import ScanResult
 from .controllers import *
 
-app_blueprint = Blueprint('app',__name__)
+app_blueprint = Blueprint('app',__name__,template_folder='templates')
 
 @app_blueprint.route('/')
 def index():
-    return "teri mkc"
+    return render_template('argus/index.html')
 
-@app_blueprint.route('/login')
-def login():
-    return "this is a login page"
+@app_blueprint.route('/scanner')
+def scanner():
+    return render_template('argus/scanner.html')
+
+@app_blueprint.route('/report')
+def report():
+    return render_template('argus/report.html')

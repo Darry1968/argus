@@ -1,0 +1,23 @@
+{% extends 'argus/base.html' %}
+
+{% block title %}Report{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/report.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<h1>Generate Report</h1>
+<form id="report-form">
+    <label for="scan-select">Select a Scan:</label>
+    <select id="scan-select">
+        <option value="scan1">Scan 1 - 2024-11-15</option>
+        <option value="scan2">Scan 2 - 2024-11-16</option>
+    </select>
+    <button type="button" id="generate-report">Generate Report</button>
+</form>
+<section id="report-output">
+    <h2>Report</h2>
+    <div>No report generated yet...</div>
+</section>
+{% endblock %}
