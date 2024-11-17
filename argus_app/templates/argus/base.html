@@ -13,9 +13,12 @@
 <body>
     <header>
         <nav>
+            <img src="{{ url_for('app.static', filename='css/Logo.png') }}" id="logo">
             <a href="{{ url_for('app.index') }}">Home</a>
             <a href="{{ url_for('app.scanner') }}">Scanner</a>
             <a href="{{ url_for('app.report') }}">Report</a>
+            <a href="{{ url_for('app.login') }}" class="button">Login</a>
+        
         </nav>
     </header>
     <main>

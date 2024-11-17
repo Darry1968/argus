@@ -22,3 +22,7 @@ def scanner():
 @app_blueprint.route('/report')
 def report():
     return render_template('argus/report.html')
+
+@app_blueprint.route('/login')
+def login():
+    return render_template('argus/login.html')

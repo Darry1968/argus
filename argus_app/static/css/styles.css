@@ -12,17 +12,22 @@ header {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 header nav {
     display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 15px;
 }
 
 header nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 0;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -31,6 +36,47 @@ header nav a:hover {
     color: #00bcd4;
 }
 
+/* Logo Styles */
+header img#logo {
+    max-width: 50px;
+    height: auto;
+    margin-right: auto;
+    display: inline-block;
+    align-self: center;
+    transition: transform 0.3s ease;
+}
+
+header img#logo:hover {
+    transform: scale(1.1);
+}
+header .auth-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+header .auth-buttons .button {
+    padding: 8px 15px;
+    background-color: transparent;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+header .auth-buttons .button:hover {
+    background-color: #0097a7;
+    color: #fff;
+}
+/* Adjusting Navbar Alignment */
+header nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Main Content Styles */
 main {
     padding: 20px;
     max-width: 800px;
@@ -40,6 +86,7 @@ main {
     border-radius: 8px;
 }
 
+/* Footer Styles */
 footer {
     text-align: center;
     padding: 10px;
@@ -131,8 +178,7 @@ form button:hover {
 a.button {
     display: inline-block;
     padding: 10px 15px;
-    margin-top: 10px;
-    background-color: #00bcd4;
+    background-color: transparent;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
@@ -147,6 +193,7 @@ a.button:hover {
 @media (max-width: 768px) {
     header nav {
         flex-direction: column;
+        align-items: flex-end;
     }
 
     header nav a {
