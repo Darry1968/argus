@@ -5,16 +5,85 @@
 {% block content %}
 <h1>Welcome to ARGUS</h1>
 <p>ARGUS is an API vulnerability scanner designed to detect and mitigate risks in APIs.</p>
+
+<!-- Hero Section -->
+<section id="hero">
+    <h2>Your API Security, Our Priority</h2>
+    <p>Experience seamless vulnerability detection and protection for your APIs.</p>
+    <a href="#services" class="button">Learn More</a>
+</section>
+
+<!-- Architecture Section -->
 <section id="architecture">
     <h2>Architecture</h2>
     <img src="{{ url_for('static', filename='images/architecture-diagram.png') }}" alt="Architecture Diagram">
 </section>
-<section id="how-it-works">
-    <h2>How It Works</h2>
+
+<!-- About Us Section -->
+<section id="about-us">
+    <h2>About Us</h2>
+    <p>Our team of experts specializes in API security with years of experience in the cybersecurity field. Trusted by hundreds of clients globally.</p>
+</section>
+
+<!-- Services Provided Section -->
+<section id="services">
+    <h2>Services Provided</h2>
+    <ul>
+        <li>Vulnerability Detection</li>
+        <li>Continuous Monitoring</li>
+        <li>Takedown Assistance</li>
+        <li>Detailed Reporting</li>
+    </ul>
+</section>
+
+<!-- Solutions Section -->
+<section id="solutions">
+    <h2>Solutions</h2>
+    <p>Our process involves:</p>
     <ol>
-        <li>Enter the API endpoint.</li>
-        <li>Choose scan type.</li>
-        <li>View the results and download the report.</li>
+        <li>Analyzing your API structure</li>
+        <li>Identifying vulnerabilities</li>
+        <li>Providing actionable recommendations</li>
+        <li>Ensuring continuous security</li>
     </ol>
 </section>
+
+<!-- Why Us Section -->
+<section id="why-us">
+    <h2>Why Choose Us?</h2>
+    <blockquote>"ARGUS has transformed the way we secure our APIs. Highly recommended!" - Client Testimonial</blockquote>
+    <p>Join our satisfied customers and experience unparalleled API security.</p>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq">
+    <h2>FAQ</h2>
+    <details>
+        <summary>What APIs do you support?</summary>
+        <p>We support REST, GraphQL, and SOAP APIs.</p>
+    </details>
+    <details>
+        <summary>How often should I scan my API?</summary>
+        <p>We recommend scanning your APIs at least once a month or after major updates.</p>
+    </details>
+</section>
+
+<!-- Connect With Us Section -->
+<section id="connect">
+    <h2>Connect With Us</h2>
+    <p>Have questions or need support? Reach out to us at:</p>
+    <p>Email: support@argus.com</p>
+    <p>Phone: +1 (800) 123-4567</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 ARGUS. All rights reserved.</p>
+    <nav>
+        <a href="#hero">Home</a> |
+        <a href="#about-us">About Us</a> |
+        <a href="#services">Services</a> |
+        <a href="#connect">Contact</a>
+    </nav>
+</footer>
 {% endblock %}
