@@ -5,8 +5,15 @@ from models import User  # Assuming a User model exists in models.py
 
 from .controllers import *
 
+login_manager = LoginManager()
+
 auth_blueprint = Blueprint('auth', __name__,url_prefix="/auth")
 
+@login_manager.user_loader
+def load_user(user_id):
+    """Load user by ID."""
+    return User.query.get(int(user_id))
+    
 @auth_blueprint.route('/login', methods=['POST'])
 def login():
     """Handle login requests."""
