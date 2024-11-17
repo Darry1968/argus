@@ -3,20 +3,21 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Welcome to ARGUS</h1>
-<p>ARGUS is an API vulnerability scanner designed to detect and mitigate risks in APIs.</p>
-
 <!-- Hero Section -->
 <section id="hero">
+    <img src="{{ url_for('app.static', filename='css/lander.png') }}" alt="Landing">
+    <div class="hero-content">
+    <h1>Welcome to ARGUS</h1>
     <h2>Your API Security, Our Priority</h2>
     <p>Experience seamless vulnerability detection and protection for your APIs.</p>
     <a href="#services" class="button">Learn More</a>
+    </div>
 </section>
 
 <!-- Architecture Section -->
 <section id="architecture">
     <h2>Architecture</h2>
-    <img src="{{ url_for('static', filename='images/architecture-diagram.png') }}" alt="Architecture Diagram">
+    <!-- <img src="{{ url_for('static', filename='images/architecture-diagram.png') }}" alt="Architecture Diagram"> -->
 </section>
 
 <!-- About Us Section -->

@@ -9,16 +9,25 @@
     <script src="{{ url_for('app.static', filename='js/main.js') }}" defer></script>
     {% block extra_scripts %}{% endblock %}
 </head>
-
+ <!-- Loader Section -->
+ <div id="loader">
+    <img src="{{ url_for('app.static', filename='css/loader.png') }}" alt="Loading...">
+    <p>Loading....</p>
+</div>
+<div id="content" style="display: none;">
+    <!-- Main content goes here -->
+</div>
+<script src="{{ url_for('app.static', filename='js/script.js') }}" defer></script>
 <body>
     <header>
         <nav>
             <img src="{{ url_for('app.static', filename='css/Logo.png') }}" id="logo">
-            <a href="{{ url_for('app.index') }}">Home</a>
-            <a href="{{ url_for('app.scanner') }}">Scanner</a>
-            <a href="{{ url_for('app.report') }}">Report</a>
+            <div class="nav-links">
+                <a href="{{ url_for('app.index') }}">Home</a>
+                <a href="{{ url_for('app.scanner') }}">Scanner</a>
+                <a href="{{ url_for('app.report') }}">Report</a>
+            </div>
             <a href="{{ url_for('app.login') }}" class="button">Login</a>
-        
         </nav>
     </header>
     <main>

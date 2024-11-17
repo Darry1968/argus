@@ -25,4 +25,4 @@ app.register_blueprint(app_blueprint)
 app.register_blueprint(auth_blueprint)
 
 if __name__ == '__main__':
-    app.run(**configs.app_run['test'],debug=True)
+    app.run(**configs.app_run['test'])
