@@ -1,31 +1,25 @@
 from flask import Blueprint, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, logout_user, login_required
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import User  # Assuming a User model exists in models.py
+from models import User  # Ensure this is correctly defined in models.py
 
-from .controllers import *
-
+# Create Blueprint and LoginManager
+auth_blueprint = Blueprint('auth', __name__, url_prefix="/auth")
 login_manager = LoginManager()
-
-auth_blueprint = Blueprint('auth', __name__,url_prefix="/auth")
 
 @login_manager.user_loader
 def load_user(user_id):
     """Load user by ID."""
-    return User.query.get(int(user_id))
-    
+    return User.query.get(int(user_id))  # Assuming SQLAlchemy is used
+
 @auth_blueprint.route('/login', methods=['POST'])
 def login():
     """Handle login requests."""
     data = request.form  # Get form data
-    if not data:
-        flash("data is required")
-    
     email = data.get('email')
     password = data.get('password')
 
     user = User.query.filter_by(email=email).first()
-
     if user and check_password_hash(user.password, password):
         login_user(user)
         flash('Logged in successfully!', 'success')
@@ -34,7 +28,7 @@ def login():
     flash('Invalid email or password', 'danger')
     return redirect(url_for('app.index'))  # Redirect to homepage
 
-@auth_blueprint.route('signup')
+@auth_blueprint.route('/signup', methods=['POST'])
 def signup():
     """Handle signup requests."""
     data = request.form
@@ -57,8 +51,8 @@ def signup():
         flash('Account created successfully! Please log in.', 'success')
         return redirect(url_for('app.index'))
     else:
-        flash("Password and confirm password does not match")
-        return redirect(url_for('app.login'))
+        flash("Password and confirm password do not match")
+        return redirect(url_for('app.index'))
 
 @auth_blueprint.route('/logout', methods=['POST'])
 @login_required
