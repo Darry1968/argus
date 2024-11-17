@@ -10,6 +10,7 @@ login_manager = LoginManager()
 
 # configuration
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["OWASP_API_KEY"] = "glcpt71nmqds2vgm4u510krid0"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./test.db"
 app.secret_key = "JaiMataDi"
 
