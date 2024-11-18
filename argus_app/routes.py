@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, render_template
-# from .utils.scanner import scan_api
+from .utils.scanner import APIScanner
 from models import ScanResult
 from .controllers import *
 
@@ -15,9 +15,16 @@ app_blueprint = Blueprint(
 def index():
     return render_template('argus/index.html')
 
-@app_blueprint.route('/scanner')
+@app_blueprint.route('/scanner',methods=['GET','POST'])
 def scanner():
-    return render_template('argus/scanner.html')
+    if request.method == 'POST':
+        data = request.form
+        url = data.get('url')
+        scanner = APIScanner()
+        results = scanner.scan_api(url)
+
+    else:
+        return render_template('argus/scanner.html')
 
 @app_blueprint.route('/report')
 def report():
