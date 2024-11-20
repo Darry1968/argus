@@ -18,14 +18,45 @@
     <div class="box" id="owasp-top-10">
         <h3>OWASP Top 10</h3>
         <!-- OWASP Top 10 content goes here -->
+        {% if owasp_top_10 %}
+
+        {% for key, value in owasp_top_10.items() %}
+        <li>{{ key }}:
+            {% if value is iterable and not value|string %}
+            <ul>
+                {% for subvalue in value %}
+                <li>{{ subvalue }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            {{ value }}
+            {% endif %}
+        </li>
+        {% endfor %}
+        {% endif %}
+
     </div>
     <div class="box" id="open-api-endpoints">
         <h3>Open API Endpoints</h3>
         <!-- Open API content goes here -->
+        {% if endpoints %}
+        {% for item in endpoints %}
+        <li>{{ item }}</li>
+        {% endfor %}
+        {% else %}
+        No results yet...
+        {% endif %}
     </div>
     <div class="box" id="owasp-zap-results">
         <h3>OWASP ZAP Results</h3>
         <!-- OWASP ZAP Results content -->
+        {% if owasp_zap_results %}
+        {% for item in owasp_zap_results %}
+        <li>{{ item }}</li>
+        {% endfor %}
+        {% else %}
+        No results yet...
+        {% endif %}
     </div>
 </div>
 {% endblock %}

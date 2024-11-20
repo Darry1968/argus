@@ -21,8 +21,28 @@ def scanner():
         data = request.form
         url = data.get('url')
         scanner = APIScanner()
-        results = scanner.scan_api(url)
-        return render_template('argus/scanner.html',endpoints=results)
+        open_endpoints = scanner.scan_api(url)
+        owasp_zap_results = [
+            "mkc 1 baar",
+            "mkc 2 baar",
+            "mkc 3 baar",
+        ]
+        owasp_top_10 = {
+            "name": "Darshan Soni",
+            "age": 21,
+            "skills": ["Python", "Cybersecurity", "PowerShell"],
+            "details": {
+                "email": "sonidarshan200@gmail.com",
+                "location": "Pune, Maharashtra"
+            }
+        }
+        
+        return render_template(
+            'argus/scanner.html',
+            endpoints=open_endpoints, 
+            owasp_zap_results = owasp_zap_results,
+            owasp_top_10 = owasp_top_10
+        )
     else:
         return render_template('argus/scanner.html')
 
