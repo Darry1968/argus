@@ -16,6 +16,14 @@
 
 <section id="results">
     <h2>Results</h2>
-    <div id="results-output">No results yet...</div>
+    <div id="results-output">
+        {% if endpoints %}
+        {% for item in endpoints %}
+        <li>{{ item }}</li>
+        {% endfor %}
+        {% else %}
+        No results yet...
+        {% endif %}
+    </div>
 </section>
 {% endblock %}
