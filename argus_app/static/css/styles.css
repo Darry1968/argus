@@ -448,3 +448,79 @@ footer nav a {
 footer nav a:hover {
     color: #0097a7;
 }
+
+/* Navigation Bar Styling */
+#navbar {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5em;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Form Styling */
+#scanner-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+#api-endpoint {
+    width: 60%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#run-scan-web {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#run-scan-web:hover {
+    background-color: #0056b3;
+}
+
+/* Dashboard Layout */
+#dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    padding: 20px;
+}
+
+.box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#owasp-top-10 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+
+#open-api-endpoints,
+#owasp-zap-results,
+#box-4 {
+    grid-column: 2 / 3;
+}
+
+#open-api-endpoints {
+    grid-row: 1 / 2;
+}
+
+#owasp-zap-results {
+    grid-row: 2 / 3;
+}
+
+#box-4 {
+    grid-row: 3 / 4;
+}

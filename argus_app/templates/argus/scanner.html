@@ -7,23 +7,25 @@
 {% endblock %}
 
 {% block content %}
-<h1>API Scanner Tool</h1>
+
 <form id="scanner-form" action="{{ url_for('app.scanner') }}" method="post">
-    <label for="api-endpoint">Enter API Endpoint:</label>
+    <label for="api-endpoint">Input URL:</label>
     <input type="text" id="api-endpoint" name="url" placeholder="https://api.example.com">
-    <button type="submit" id="run-scan-web">Run Scan on Web</button>
+    <button type="submit" id="run-scan-web">Submit</button>
 </form>
 
-<section id="results">
-    <h2>Results</h2>
-    <div id="results-output">
-        {% if endpoints %}
-        {% for item in endpoints %}
-        <li>{{ item }}</li>
-        {% endfor %}
-        {% else %}
-        No results yet...
-        {% endif %}
+<div id="dashboard">
+    <div class="box" id="owasp-top-10">
+        <h3>OWASP Top 10</h3>
+        <!-- OWASP Top 10 content goes here -->
     </div>
-</section>
+    <div class="box" id="open-api-endpoints">
+        <h3>Open API Endpoints</h3>
+        <!-- Open API content goes here -->
+    </div>
+    <div class="box" id="owasp-zap-results">
+        <h3>OWASP ZAP Results</h3>
+        <!-- OWASP ZAP Results content -->
+    </div>
+</div>
 {% endblock %}
