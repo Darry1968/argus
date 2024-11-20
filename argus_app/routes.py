@@ -51,7 +51,10 @@ def scanner():
 
 @app_blueprint.route('/report')
 def report():
-    return render_template('argus/report.html')
+    # Query all scans for the user (e.g., user_id = 1 for demonstration purposes)
+    user_id = 1  # Replace with actual logic to get the current logged-in user
+    scans = ScanResult.query.filter_by(user_id=user_id).all()
+    return render_template('argus/report.html', scans=scans)
 
 @app_blueprint.route('/login')
 def login():
@@ -60,23 +63,21 @@ def login():
 @app_blueprint.route('/generate-report/<int:url_id>', methods=['GET'])
 def generate_report_route(url_id):
     # Fetch data from the database
-    url_data = db.session.query(ScanResult).filter_by(id=url_id).first()
-    if url_data:
-        result_data = json.loads(url_data.result)  # Convert JSON string to dictionary
-        vulnerabilities = result_data.get("vulnerabilities", [])  # Extract vulnerabilities
-    else:
-        return {"error": "URL not found"}, 404
+    scan = ScanResult.query.get(url_id)
+    if not scan:
+        return {"error": "Scan not found"}, 404
 
     # Prepare data
     report_data = {
-        "original_url": url_data.original_endpoint,
-        "open_endpoints": json.loads(url_data.endpoints),
-        "vulnerabilities_found": json.loads(url_data.result),
-        "timestamp": url_data.timestamp,
+        "original_url": scan.original_endpoint,
+        "open_endpoints": json.loads(scan.endpoints),
+        "vulnerabilities_found": json.loads(scan.result),
+        "timestamp": scan.timestamp,
     }
 
     output_dir = "argus_app/static/reports"
-    output_path = os.path.join(output_dir, f"report_{url_id}.pdf")
+    report_name = f"Scan_{scan.id}_{scan.timestamp.strftime('%Y%m%d%H%M%S')}.pdf"
+    output_path = os.path.join(output_dir, report_name)
 
     # Create the directory if it doesn't exist
     if not os.path.exists(output_dir):

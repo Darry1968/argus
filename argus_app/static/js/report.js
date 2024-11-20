@@ -1,16 +1,22 @@
-document.getElementById('generate-report').addEventListener('click', () => {
-    const selectedScan = document.getElementById('scan-select').value;
+document.addEventListener("DOMContentLoaded", () => {
+    const reportForm = document.getElementById("report-form");
+    const scanSelect = document.getElementById("scan-select");
+    const generateReportButton = document.getElementById("generate-report");
 
-    fetch(`/report?scan=${selectedScan}`)
-        .then(response => response.json())
-        .then(data => {
-            const reportOutput = document.getElementById('report-output');
-            reportOutput.innerHTML = `
-                <pre>${JSON.stringify(data, null, 2)}</pre>
-                <a href="/download?scan=${selectedScan}" download>Download Report</a>
-            `;
-        })
-        .catch(err => {
-            alert('Failed to generate report: ' + err.message);
-        });
+    reportForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent form submission
+
+        const selectedScanId = scanSelect.value;
+        if (!selectedScanId) {
+            alert("Please select a scan.");
+            return;
+        }
+
+        // Construct the report generation URL dynamically
+        const reportUrl = `/generate-report/${selectedScanId}`;
+        generateReportButton.href = reportUrl;
+
+        // Trigger the download
+        window.location.href = reportUrl;
+    });
 });

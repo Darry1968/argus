@@ -2,6 +2,7 @@ import requests
 import json
 from urllib.parse import urljoin, urlparse, parse_qs
 from models import db, ScanResult
+import concurrent.futures
 
 class APIScanner:
     def extract_base_url_and_params(self, url):
@@ -54,7 +55,6 @@ class APIScanner:
 
             if found == 0:
                 return "Nothing was found"
-        
         # after scan
         scan = ScanResult(
             original_endpoint=url,
@@ -67,6 +67,46 @@ class APIScanner:
         db.session.commit()
 
         return endpoints
+
+    def fuzz_directory(url, user_id):
+        wordlist_file = "db/dicc.txt"
+
+        # Allowed status codes and storage
+        allowed_status_code = [200, 201, 301, 302, 403]
+        url_dict = {status: [] for status in allowed_status_code}
+
+        # Check directory function
+        def check_directory(directory):
+            full_url = f"{url.rstrip('/')}/{directory.strip()}"
+            try:
+                response = requests.get(full_url, allow_redirects=True, timeout=5)
+                if response.status_code in allowed_status_code:
+                    url_dict[response.status_code].append(full_url)
+            except requests.exceptions.RequestException as e:
+                print(f"Error accessing {full_url}: {e}")
+
+        # Read and clean wordlist
+        with open(wordlist_file, "r") as file:
+            wordlist = [line.strip() for line in file.readlines()]
+
+        # Use a thread pool to perform requests concurrently
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            executor.map(check_directory, wordlist)
+
+        # Prepare results for saving to the database
+        endpoints = []
+        for status_code, urls in url_dict.items():
+            for endpoint in urls:
+                endpoints.append({
+                    "url": endpoint,
+                    "status_code": status_code
+                })
+
+        # Save results to the database
+        save_results_to_db(url, endpoints, user_id)
+
+        return url_dict  # Return the result for additional processing if needed
+
 
     # Vulnerability Scan
     def test_idor(self, endpoint, parameter):

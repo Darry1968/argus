@@ -3,7 +3,7 @@
 {% block title %}Report{% endblock %}
 
 {% block extra_scripts %}
-<script src="{{ url_for('static', filename='js/report.js') }}" defer></script>
+<script src="{{ url_for('app.static', filename='js/report.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -11,12 +11,15 @@
 <form id="report-form">
     <label for="scan-select">Select a Scan:</label>
     <select id="scan-select">
-        <option value="scan1">Scan 1 - 2024-11-15</option>
-        <option value="scan2">Scan 2 - 2024-11-16</option>
+        {% for scan in scans %}
+        <option value="{{ scan.id }}">
+            Scan {{ scan.id }} - {{ scan.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+        </option>
+        {% endfor %}
     </select>
-    <a href="/generate-report/{{ url_id }}" id="generate-report" class="btn btn-primary">Download Report</a>
-
+    <button id="generate-report" class="btn btn-primary">Download Report</button>
 </form>
+
 <section id="report-output">
     <h2>Report</h2>
     <div>No report generated yet...</div>
