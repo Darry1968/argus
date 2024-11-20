@@ -22,7 +22,7 @@ def scanner():
         url = data.get('url')
         scanner = APIScanner()
         results = scanner.scan_api(url)
-
+        return render_template('argus/scanner.html',endpoints=results)
     else:
         return render_template('argus/scanner.html')
 

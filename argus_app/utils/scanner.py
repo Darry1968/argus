@@ -1,7 +1,7 @@
 import requests
 import json
 from urllib.parse import urljoin, urlparse, parse_qs
-from models import ScanResult
+from models import db, ScanResult
 
 class APIScanner:
     def extract_base_url_and_params(self, url):
@@ -40,20 +40,33 @@ class APIScanner:
     def check_common_paths(self, url):
         found = 0
         endpoints = []
-        with open('/db/common_paths.txt','r') as file:
+        result = {"success": True, "vulnerabilities": ["XSS", "SQLi"]}
+        with open('db\common_paths.txt','r') as file:
             for endpoint in file:
                 furl = url + endpoint.strip()
-                req = requests.get(furl)
-                if req.status_code == 200:
-                    found = 1
-                    endpoints.append(endpoint)
+                try:
+                    req = requests.get(furl)
+                    if req.status_code == 200:
+                        found = 1
+                        endpoints.append(url + endpoint)
+                except Exception as e:
+                    pass
 
             if found == 0:
                 return "Nothing was found"
         
         # after scan
-        scan_result = ScanResult(scan_name=scan_name, endpoints=json.dumps(endpoints))
-        scan_result.save()
+        scan = ScanResult(
+            original_endpoint=url,
+            endpoints=json.dumps(endpoints),
+            result=json.dumps(result),
+            user_id=1
+        )
+
+        db.session.add(scan)
+        db.session.commit()
+
+        return endpoints
 
     # Vulnerability Scan
     def test_idor(self, endpoint, parameter):
@@ -116,7 +129,10 @@ class APIScanner:
         :param endpoints: List of endpoints to scan.
         :return: Scan results.
         """
-        results = []
+        if not endpoint.endswith("/"):
+            endpoint = endpoint + '/'
+
+        results = self.check_common_paths(endpoint)
 
         # idor_result = self.test_idor(endpoint, "1")  # Example parameter
         # sql_result = self.test_sql_injection(endpoint, "id", "' OR '1'='1")
