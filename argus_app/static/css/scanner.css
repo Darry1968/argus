@@ -1,0 +1,167 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #00d1ff;
+    margin-bottom: 30px;
+}
+
+/* Scanner Section */
+.scanner-section {
+    padding: 50px 20px;
+    text-align: center;
+    background: #000000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.scanner-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group label {
+    font-size: 1rem;
+    color: #bbb;
+    text-align: left;
+}
+/* #api-endpoint {
+    width: 350px;
+    padding: 12px;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease-in-out; */
+
+#api-endpoint{
+    width: 350px;
+}
+
+.input-group input {
+    padding: 10px;
+    font-size: 1rem;
+    background: #333;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #00d1ff;
+    outline: none;
+}
+
+.scan-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: aqua;
+    border: none;
+    width: 150px;
+    margin-left: 85px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 6px 8px aqua, 0 4px 4px rgba(107, 106, 106, 0.22);
+}
+
+.scan-button:hover {
+    background: aqua;
+    transform: translateY(-3px);
+}
+
+/* Results Section */
+.results-section {
+    padding: 50px 20px;
+    background: #121212;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.result-box {
+    flex: 1 1 calc(30% - 20px);
+    background: #000000;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    min-width: 250px;
+    max-width: 400px;
+    text-align: left;
+}
+
+.result-box h3 {
+    font-size: 1.5rem;
+    color: #00d1ff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.result-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.result-box li {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #ccc;
+}
+
+.result-box li a {
+    color: #00d1ff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.result-box li a:hover {
+    color: #00a3cc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .results-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .result-box {
+        flex: 1 1 100%;
+        max-width: 90%;
+    }
+}
+#owasp-zap-results.result-box{
+    width: 400px;
+    height: 400px;
+}
+
+#open-api-endpoints.result-box{
+    width: 400px;
+    height: 400px;
+}
+
+#owasp-top-10.result-box{
+    width: 400px;
+    height: 400px;
+}

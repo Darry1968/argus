@@ -3,79 +3,82 @@
 {% block title %}Scanner Tool{% endblock %}
 
 {% block extra_scripts %}
+<link rel="stylesheet" href="{{ url_for('app.static', filename='css/scanner.css') }}">
 <script src="{{ url_for('static', filename='js/scanner.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
+<section class="scanner-section">
+    <div class="scanner-container">
+        <!-- <h2 class="section-title">API Vulnerability Scanner</h2> -->
+        <form id="scanner-form" action="{{ url_for('app.scanner') }}" method="post">
+            <div class="input-group">
+                <label for="api-endpoint">Enter API Endpoint:</label>
+                <input type="text" id="api-endpoint" name="url" placeholder="https://api.example.com" required>
+                <button type="submit" class="scan-button">Run Scan</button>
+            </div>
+        </form>
+    </div>
+</section>
 
-<form id="scanner-form" action="{{ url_for('app.scanner') }}" method="post">
-    <label for="api-endpoint">Input URL:</label>
-    <input type="text" id="api-endpoint" name="url" placeholder="https://api.example.com">
-    <button type="submit" id="run-scan-web">Submit</button>
-</form>
-
-<div id="dashboard">
-    <div class="box" id="owasp-top-10">
-        <h3>OWASP Top 10</h3>
-        <!-- OWASP Top 10 content goes here -->
-        {% if owasp_top_10 %}
-
-        {% for key, value in owasp_top_10.items() %}
-        <li>{{ key }}:
-            {% if value is iterable and not value is string %}
+<section class="results-section">
+    <div class="results-container">
+        <div class="result-box" id="owasp-top-10">
+            <h3>OWASP Top 10</h3>
             <ul>
-                {% for subvalue in value %}
-                <li>{{ subvalue }}</li>
+                {% if owasp_top_10 %}
+                {% for key, value in owasp_top_10.items() %}
+                <li>{{ key }}:
+                    {% if value is iterable and not value is string %}
+                    <ul>
+                        {% for subvalue in value %}
+                        <li>{{ subvalue }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    {{ value }}
+                    {% endif %}
+                </li>
                 {% endfor %}
+                {% else %}
+                <li>No results yet...</li>
+                {% endif %}
             </ul>
-            {% else %}
-            {{ value }}
-            {% endif %}
-        </li>
-        {% endfor %}
-
-        {% endif %}
-
-    </div>
-    <div class="box" id="open-api-endpoints">
-        <h3>Open API Endpoints</h3>
-        <a href=""></a>
-        <!-- Open API content goes here -->
-        <!-- {% if endpoints %}
-        {% for item in endpoints %}
-        <li><a href="{{ item }}">{{ item }}</a></li>
-        {% endfor %}
-        {% else %}
-        No results yet...
-        {% endif %} -->
-        {% if endpoints %}
-
-        {% for key, value in endpoints.items() %}
-        <li>{{ key }}:
-            {% if value is iterable and not value is string %}
+        </div>
+        <div class="result-box" id="open-api-endpoints">
+            <h3>Open API Endpoints</h3>
             <ul>
-                {% for subvalue in value %}
-                <li><a href="{{ subvalue }}">{{ subvalue }}</a></li>
+                {% if endpoints %}
+                {% for key, value in endpoints.items() %}
+                <li>{{ key }}:
+                    {% if value is iterable and not value is string %}
+                    <ul>
+                        {% for subvalue in value %}
+                        <li><a href="{{ subvalue }}" target="_blank">{{ subvalue }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    {{ value }}
+                    {% endif %}
+                </li>
                 {% endfor %}
+                {% else %}
+                <li>No results yet...</li>
+                {% endif %}
             </ul>
-            {% else %}
-            {{ value }}
-            {% endif %}
-        </li>
-        {% endfor %}
-
-        {% endif %}
+        </div>
+        <div class="result-box" id="owasp-zap-results">
+            <h3>OWASP ZAP Results</h3>
+            <ul>
+                {% if owasp_zap_results %}
+                {% for item in owasp_zap_results %}
+                <li>{{ item }}</li>
+                {% endfor %}
+                {% else %}
+                <li>No results yet...</li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-    <div class="box" id="owasp-zap-results">
-        <h3>OWASP ZAP Results</h3>
-        <!-- OWASP ZAP Results content -->
-        {% if owasp_zap_results %}
-        {% for item in owasp_zap_results %}
-        <li>{{ item }}</li>
-        {% endfor %}
-        {% else %}
-        No results yet...
-        {% endif %}
-    </div>
-</div>
+</section>
 {% endblock %}

@@ -81,7 +81,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background: black;
     color: #fff;
     padding: 10px 20px;
     display: flex;
@@ -99,7 +99,7 @@ header nav {
 header nav .nav-links{
     flex-grow: 1;
     display: flex;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto','sans-serif';
     justify-content: center;
     gap: 20px;
 }
@@ -126,6 +126,7 @@ header img#logo {
     display: inline-block;
     align-self: center;
     transition: transform 0.3s ease;
+    
 }
 
 header img#logo:hover {

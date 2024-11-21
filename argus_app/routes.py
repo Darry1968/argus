@@ -16,7 +16,7 @@ app_blueprint = Blueprint(
 
 @app_blueprint.route('/')
 def index():
-    return render_template('argus/index.html')
+    return render_template('argus/test.html')
 
 @app_blueprint.route('/scanner',methods=['GET','POST'])
 def scanner():
