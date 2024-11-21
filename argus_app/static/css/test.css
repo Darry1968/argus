@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -236,9 +238,6 @@ header {
     font-size: 35px;
 }
 
-.about .title::after {
-    content: "Who am I";
-}
 
 .about-content {
     justify-content: center;
@@ -246,12 +245,12 @@ header {
 }
 
 .about .about-content .Left-column img {
-    /* height: 400px;
-    width: 365px; */
+    height: 600px;
+    width: 1000px;
     object-fit: cover;
     border-radius: 10px;
-    height: auto;
-    width: 100%;
+    /*height: auto;*/
+    /* width: 100%; */
 }
 
 .about .about-content .right-column {
@@ -317,10 +316,6 @@ header {
 
 .skills .title {
     font-size: 35px;
-}
-
-.skills .title::after {
-    content: "Superpowers";
 }
 
 .skill-content h1 {
@@ -594,13 +589,14 @@ header {
     list-style: none;
     width: 350px;
     margin: 65px auto;
-    color: #fff;
+    color: #000000;
     padding: 20px;
     box-shadow: 0 14px 28px rgba(84, 83, 83, 0.25), 0 10px 10px rgba(107, 106, 106, 0.22);
 }
 
 .contact-content .left .box {
     position: relative;
+    color:whitesmoke;
     padding: 20px 0;
     font-weight: 300;
 }
@@ -620,7 +616,7 @@ header {
     font-size: 19px;
     width: 450px;
     margin: 45px auto;
-    color: black;
+    color: whitesmoke;
     padding: 20px;
     box-shadow: 0 14px 28px rgba(84, 83, 83, 0.25), 0 10px 10px rgba(107, 106, 106, 0.22);
 }
@@ -633,7 +629,7 @@ header {
 
 .contact-content .right p {
     text-align: justify;
-    color: white;
+    color: whitesmoke;
 }
 
 .contact-content .right form .button-area {
@@ -642,7 +638,7 @@ header {
 }
 
 .contact-content .right form .button-area button {
-    color: #fff;
+    color: #000000;
     display: block;
     width: 140px !important;
     height: 45px;

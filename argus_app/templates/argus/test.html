@@ -11,19 +11,12 @@
 <div class="container">
     <section class="home" id="home">
         <div class="max-width">
-            <div class="home-content">
-                <div class="text-1">Hey, my name is</div>
-                <div class="text-2">Darshan Soni</div>
-                <div class="text-3">And I'm a <span>Security Researcher</span></div>
-                <br>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/darshan-soni-0759a722a/" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Darry1968" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="http://blog.na5hv4r.me/" target="_blank"><i class="fas fa-blog"></i></a>
-
+            <div class="hero-content">
+                <h1>Welcome to ARGUS</h1>
+                <h2>Your API Security, Our Priority</h2>
+                <p>Experience seamless vulnerability detection and protection for your APIs.</p>
+                <a href="#services" class="button">Learn More</a>
                 </div>
-            </div>
         </div>
     </section>
 </div>
@@ -31,34 +24,26 @@
 <!-- About section -->
 <section class="about" id="about">
     <div class="max-width">
-        <h2 class="title">About Myself </h2>
+        <h2 class="title">Architecture </h2>
         <div class="about-content">
             <div class="Left-column">
-                <img src="./assets/DarshanSoni.jpg" alt="My Image">
+                <img src="{{ url_for('app.static', filename='css/Architecture.jpg') }}" alt="Architecture Diagram">
             </div>
             <div class="right-column">
-                <div class="text">"I would tell you a joke about an UDP packet, but you might not get it."</div>
+                <div class="text">"An unsecured API is basically shouting 'Free Wi-Fi!' to hackers, but instead of internet, they get your entire data."</div>
                 <p>
                 <ul>
-                    <li>Hello there! 👋 I'm a passionate Fourth-year CSE student with a
-                        razor-sharp focus on Cyber Security and Forensics. 🌐💼 My objective is to acquire a solid
-                        foundation in cybersecurity principles, along with practical skills and a strong
-                        understanding of the field. 💻✨
-                    </li>
+                    <li>The journey begins by analyzing the input API endpoint, classifying it into specific patterns such as authentication flaws or sensitive data exposure. This ensures targeted and precise vulnerability detection.</li>
                     <br>
-                    <li>As part of my journey in cybersecurity, I have actively participated in various CTF (Capture
-                        The Flag) events, specializing in web challenges. 🔒💡 I have also created several projects,
-                        including CipherX, ARGUS, and bforce, which you can check out on my GitHub.
+                    <li>At the core lies the Argus Scanner, leveraging test cases derived from OWASP standards to simulate attacks and uncover weaknesses. Its adaptive capabilities ensure comprehensive scanning across various API communication protocols.
                     </li>
                     <br>
                     <li>
-                        Feel free to reach out to me for any collaborations or discussions related to cybersecurity
-                        and coding! I bring a unique blend of technical prowess and strategic thinking to the table
-                        and passion—where every line of code is a step towards securing the cyberspace.
+                        Project Argus excels at identifying critical issues such as Broken User Authentication, Information Disclosure, Insure Deserialization. All findings are compiled into detailed, actionable reports, offering insights into vulnerabilities and recommending mitigation strategies to fortify your APIs. To guarantee data integrity, generated reports are securely stored on blockchain-based platforms like IPFS and Filecoin. This ensures tamper-proof audit trails and reliable long-term storage.
                     </li>
                 </ul>
                 </p>
-                <a href="Resume.pdf">My Resume</a>
+                <a href="{{ url_for('app.scanner') }}">Scan Your API Now!</a>
             </div>
         </div>
     </div>
@@ -67,108 +52,32 @@
 <!-- Skill section -->
 <section class="skills" id="skills">
     <div class="max-width">
-        <h2 class="title">My Skills & Achievements</h2>
+        <h2 class="title">Why Choose Project Argus?</h2>
         <div class="skill-content">
             <div class="middle">
-                <div class="text">Certifications</div>
-                <li>Google Cybersecurity Professional Certificate</li>
+                <div class="text">API VULNERABILITIES</div>
+                <li>As web applications  / websites increasingly rely on APIs to connect with mobile apps,</li>
+                <li>identifying and addressing vulnerabilities in these communication channels is crucial to ensure secure data exchange.</li>
                 <br>
-                <li>Career Essentials in Cybersecurity: (Microsoft & LinkedIn)</li>
-                <br>
-                <li>Crash Course on Python: (Google) </li>
-                <br>
-                <li>Programming Essentials in C++: (CISCO)</li>
-                <br>
-                <li>The Complete Cyber Security Course: Hackers Exposed</li>
             </div>
             <div class="left">
-                <div class="text">Skills</div>
+                <div class="text">WEB - API INTEGRATION</div>
                 <li>
-                    <h3>Linux</h3><span class="bar"><span class="Linux"></span></span>
-                </li>
-                <li>
-                    <h3>Networking</h3><span class="bar"><span class="Networking"></span></span>
-                </li>
-                <li>
-                    <h3>Programming</h3><span class="bar"><span class="Programming"></span></span>
-                </li>
-                <li>
-                    <h3>Capture The Flag</h3><span class="bar"><span class="Capture-The-Flag"></span></span>
-                </li>
-                <li>
-                    <h3>Ethical Hacking</h3><span class="bar"><span class="Ethical-Hacking"></span></span>
+                    <h3>Analyzing the interactions and data flows between API transactions and their companion apps can uncover potential security flaws that could be exploited by malicious actors.</h3>
                 </li>
             </div>
             <div class="right">
-                <div class="text">Achievements</div>
-                <li>Speaker of multiple sessions related to cybersecurity</li>
-                <br>
-                <li>Organized ShunyaCTF Aarambha 750+ participated</li>
-                <br>
-                <li>Organized Offline ShunyaCTF </li>
-                <br>
-                <li>VishwaCTF winner Rank - 9th</li>
+                <div class="text">COMPREHENSIVE ANALYSIS</div>
+                <li>A holistic approach to scanning and assessing API-based communication is needed to provide secure solution providers with a complete understanding of their system's security posture.</li>
             </div>
         </div>
     </div>
 </section>
-
-<!-- project section -->
-<section class="projects" id="projects">
-    <div class="max-width">
-        <h2 class="title">My Projects</h2>
-        <div class="projects-content">
-            <div class="project-container">
-                <div class="details-container">
-                    <div class="artical-container">
-                        <img src="./assets/Argus.png" alt="project1" class="project-img">
-                    </div>
-                    <h2 class="project-sub-title">API-Vulnerability-scanner</h2>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn"
-                            onclick="location.href='https://github.com/Darry1968/API-Vulnerability-scanner'">Github</button>
-                    </div>
-                </div>
-                <div class="details-container">
-                    <div class="artical-container">
-                        <img src="./assets/CipherX.png" alt="project2" class="project-img">
-                    </div>
-                    <h2 class="project-sub-title">Cipher Identifier</h2>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn"
-                            onclick="location.href='https://github.com/Darry1968/cipherx'">Github</button>
-                    </div>
-                </div>
-                <div class="details-container">
-                    <div class="artical-container">
-                        <img src="./assets/HLTH.jpg" alt="project3" class="project-img">
-                    </div>
-                    <h2 class="project-sub-title">HLTH App</h2>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn"
-                            onclick="location.href='https://github.com/Darry1968/hlth_flutter'">Github</button>
-                    </div>
-                </div>
-                <div class="details-container">
-                    <div class="artical-container">
-                        <img src="./assets/eVerse.jpg" alt="project4" class="project-img">
-                    </div>
-                    <h2 class="project-sub-title">Vending Machine Python</h2>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn"
-                            onclick="location.href='https://github.com/Darry1968/Vending-machine-python'">Github</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 <!-- contact section start -->
 <section class="contact" id="contact">
     <div class="max-width">
-        <h2 class="title">Contact me</h2>
+        <h2 class="title">Connect With Us</h2>
         <div class="contact-content">
             <div class="left">
                 <div class="box">
@@ -182,7 +91,7 @@
                     <!-- <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div> -->
                     <div class="text">
                         <h3>Email</h3>
-                        <p>sonidarshan200@gmail.com</p>
+                        <p>support@argus.com</p>
                     </div>
                 </div>
                 <div class="box">
