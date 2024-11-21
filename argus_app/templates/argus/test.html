@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div class="container">
+<div class="homecontainer">
     <section class="home" id="home">
         <div class="max-width">
             <div class="hero-content">
@@ -30,17 +30,11 @@
                 <img src="{{ url_for('app.static', filename='css/Architecture.jpg') }}" alt="Architecture Diagram">
             </div>
             <div class="right-column">
-                <div class="text">"An unsecured API is basically shouting 'Free Wi-Fi!' to hackers, but instead of internet, they get your entire data."</div>
+                <div class="text">"Vulnerability isnt a bug; its an invitation."</div>
                 <p>
                 <ul>
-                    <li>The journey begins by analyzing the input API endpoint, classifying it into specific patterns such as authentication flaws or sensitive data exposure. This ensures targeted and precise vulnerability detection.</li>
-                    <br>
-                    <li>At the core lies the Argus Scanner, leveraging test cases derived from OWASP standards to simulate attacks and uncover weaknesses. Its adaptive capabilities ensure comprehensive scanning across various API communication protocols.
-                    </li>
-                    <br>
-                    <li>
-                        Project Argus excels at identifying critical issues such as Broken User Authentication, Information Disclosure, Insure Deserialization. All findings are compiled into detailed, actionable reports, offering insights into vulnerabilities and recommending mitigation strategies to fortify your APIs. To guarantee data integrity, generated reports are securely stored on blockchain-based platforms like IPFS and Filecoin. This ensures tamper-proof audit trails and reliable long-term storage.
-                    </li>
+                    <li>"An unsecured API is like shouting 'Free Wi-Fi!' to hackers, exposing your data instead of the internet. Argus Scanner analyzes API endpoints, identifies vulnerabilities like authentication flaws or sensitive data exposure, and uncovers weaknesses using OWASP-based test cases. 
+                        It addresses critical issues like Broken User Authentication and Information Disclosure, generating detailed, actionable reports with mitigation strategies to strengthen your API security."</li>
                 </ul>
                 </p>
                 <a href="{{ url_for('app.scanner') }}">Scan Your API Now!</a>
@@ -60,10 +54,9 @@
                 <li>identifying and addressing vulnerabilities in these communication channels is crucial to ensure secure data exchange.</li>
                 <br>
             </div>
-            <div class="left">
+            <div class="middle">
                 <div class="text">WEB - API INTEGRATION</div>
-                <li>
-                    <h3>Analyzing the interactions and data flows between API transactions and their companion apps can uncover potential security flaws that could be exploited by malicious actors.</h3>
+                <li>Analyzing the interactions and data flows between API transactions and their companion apps can uncover potential security flaws that could be exploited by malicious actors.</h3>
                 </li>
             </div>
             <div class="right">
@@ -73,6 +66,74 @@
         </div>
     </div>
 </section>
+
+<section class="services" id="services">
+    <div class="container">
+        <h2 class="section-title">Services Provided</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Vulnerability Detection</h3>
+                <p>Identify potential vulnerabilities in your APIs and ensure robust security.</p>
+            </div>
+            <div class="service-card">
+                <h3>Continuous Monitoring</h3>
+                <p>Maintain round-the-clock monitoring to detect and prevent anomalies in real-time.</p>
+            </div>
+            <div class="service-card">
+                <h3>Takedown Assistance</h3>
+                <p>Swift response and assistance to address and mitigate threats effectively.</p>
+            </div>
+            <div class="service-card">
+                <h3>Detailed Reporting</h3>
+                <p>Comprehensive reports with actionable insights to secure your APIs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="solutions-steps" id="solutions">
+    <div class="container">
+        <h2 class="section-title">Our Step-by-Step Approach</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">1</div>
+                <div class="timeline-content">
+                    <h3>Analyze API Structure</h3>
+                    <p>We start by dissecting your API to understand its architecture, endpoints, and workflows, identifying the most critical areas for testing.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">2</div>
+                <div class="timeline-content">
+                    <h3>Identify Vulnerabilities</h3>
+                    <p>Using advanced scanning techniques, we detect potential flaws such as broken authentication, sensitive data exposure, and more.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">3</div>
+                <div class="timeline-content">
+                    <h3>Simulate Attacks</h3>
+                    <p>Our tools simulate real-world attack scenarios to evaluate the robustness of your API under malicious conditions.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">4</div>
+                <div class="timeline-content">
+                    <h3>Generate Reports</h3>
+                    <p>Detailed reports are generated with actionable insights, remediation steps, and a summary of vulnerabilities detected.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">5</div>
+                <div class="timeline-content">
+                    <h3>Ensure Continuous Security</h3>
+                    <p>We provide monitoring tools and strategies to maintain the security of your APIs in real-time, ensuring long-term protection.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- contact section start -->
 <section class="contact" id="contact">

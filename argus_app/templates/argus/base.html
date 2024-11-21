@@ -22,12 +22,16 @@
 <body>
     <header>
         <nav>
-            <img src="{{ url_for('app.static', filename='css/Logo.png') }}" id="logo">
+            <a href="{{ url_for('app.index') }}">
+                <img src="{{ url_for('app.static', filename='css/Logo.png') }}" id="logo" alt="Logo">
+            </a>
+            <!-- <img src="{{ url_for('app.static', filename='css/Logo.png') }}" id="logo"> -->
             <div class="nav-links">
-                <a href="{{ url_for('app.index') }}">Home</a>
+                <a href="{{ url_for('app.test') }}">Home</a>
+                <!-- <a href="{{ url_for('app.index') }}">Home</a> -->
                 <a href="{{ url_for('app.scanner') }}">Scanner</a>
                 <a href="{{ url_for('app.report') }}">Report</a>
-                <a href="{{ url_for('app.test') }}">test</a>
+                
             </div>
             <a href="{{ url_for('app.login') }}" class="button">Login</a>
         </nav>
