@@ -1,6 +1,6 @@
 /env
-/__pycache__
 argus_app\utils\__pycache__
 auth\__pycache__
 argus_app\__pycache__
-argus_app\static\reports\*
+argus_app\static\reports\
+__pycache__

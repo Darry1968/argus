@@ -24,28 +24,32 @@ def scanner():
         data = request.form
         url = data.get('url')
         scanner = APIScanner()
-        open_endpoints = scanner.scan_api(url)
-        another_open_endpoints = scanner.fuzz_directory(url)
+
+        base_url,param = scanner.extract_base_url_and_params(url)
+
+        # open_endpoints = scanner.scan_paths(url,1)
+        open_endpoints = {
+            "details": {
+                "email": "sonidarshan200@gmail.com",
+                "location": "Pune, Maharashtra"
+            }
+            }
+        test_idor = scanner.test_idor(url,param,1)
+
         owasp_zap_results = [
             "mkc 1 baar",
             "mkc 2 baar",
             "mkc 3 baar",
         ]
-        # owasp_top_10 = {
-        #     "name": "Darshan Soni",
-        #     "age": 21,
-        #     "skills": ["Python", "Cybersecurity", "PowerShell"],
-        #     "details": {
-        #         "email": "sonidarshan200@gmail.com",
-        #         "location": "Pune, Maharashtra"
-        #     }
-        # }
+        owasp_top_10 = {
+            "IDOR": test_idor,
+        }
         
         return render_template(
             'argus/scanner.html',
             endpoints=open_endpoints, 
             owasp_zap_results = owasp_zap_results,
-            owasp_top_10 = another_open_endpoints
+            owasp_top_10 = owasp_top_10
         )
     else:
         return render_template('argus/scanner.html')
@@ -75,8 +79,8 @@ def generate_report_route(url_id):
     # Prepare data
     report_data = {
         "original_url": scan.original_endpoint,
-        "open_endpoints": json.loads(scan.endpoints),
-        "vulnerabilities_found": json.loads(scan.result),
+        "open_endpoints": json.loads(scan.open_endpoints),
+        "vulnerabilities_found": json.loads(scan.vulnerabilities_found),
         "timestamp": scan.timestamp,
     }
 
