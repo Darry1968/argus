@@ -34,7 +34,11 @@ def scanner():
                 "location": "Pune, Maharashtra"
             }
             }
+        # IDOR scan
         test_idor = scanner.test_idor(url,param,1)
+        
+        # SQL scan
+        test_sql = scanner.test_sql_injection(base_url,param,1)
 
         owasp_zap_results = [
             "mkc 1 baar",
@@ -43,6 +47,7 @@ def scanner():
         ]
         owasp_top_10 = {
             "IDOR": test_idor,
+            "SQL scan": test_sql
         }
         
         return render_template(

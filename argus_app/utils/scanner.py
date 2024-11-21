@@ -144,7 +144,7 @@ class APIScanner:
         key = next(iter(param.keys()))
         
         results = []  # Store results of each test case
-
+        exposed = []
         for test_value in test_values:
             # Construct the test URL
             new_url = f"{base_url}?{key}={param['id'][0]}"
@@ -155,12 +155,15 @@ class APIScanner:
                 if response.status_code == 200:
                     # Analyze the response content for sensitive data exposure
                     exposed_data = self.analyze_idor_response(response.text)
-
+                    # print(exposed_data)
                     if exposed_data:
                         result = {
                             "parameter_value": test_value,
                             "status_code": response.status_code,
                             "data_exposed": True,
+                            "exposed_data": exposed_data
+                        }
+                        exposed = {
                             "exposed_data": exposed_data
                         }
                         results.append(result)
@@ -192,7 +195,6 @@ class APIScanner:
 
         return results  # Return results for further processing or reporting
 
-
     def analyze_idor_response(self, response_text):
         """
         Analyze the response text to detect sensitive data exposure.
@@ -208,7 +210,6 @@ class APIScanner:
                 exposed_data.append(keyword)
 
         return exposed_data if exposed_data else None
-
 
     def save_idor_results(self, base_url, key, results, user_id):
         """
@@ -263,11 +264,13 @@ class APIScanner:
             "' AND '1'='1"
         ]
 
-        results = []  # Store the results of each test case
-
+        db_results = []  # Store the results of each test case
+        results = []
+        key = next(iter(parameter_name.keys()))
         for payload in payloads:
             # Construct the test URL with the payload
-            params = {parameter_name: payload}
+            params = {key: payload}
+            flag=0
             try:
                 response = requests.get(base_url, params=params, timeout=5)
 
@@ -281,31 +284,31 @@ class APIScanner:
                             "vulnerable": True,
                             "error_message": self.extract_sql_error(response.text)
                         }
-                        results.append(result)
-                    else:
-                        result = {
-                            "payload": payload,
-                            "status_code": response.status_code,
-                            "vulnerable": False
+                        new_result = {
+                            "Vulnerable_URL":response.url,
+                            "payload": payload
                         }
-                        results.append(result)
+                        db_results.append(result)
+                        results.append(new_result)
+                        print(results)
+                    else:
+                        flag=1
                 else:
-                    result = {
-                        "payload": payload,
-                        "status_code": response.status_code,
-                        "vulnerable": False
-                    }
-                    results.append(result)
+                    flag=1
+
             except requests.RequestException as e:
-                results.append({
+                db_results.append({
                     "payload": payload,
                     "status_code": None,
                     "vulnerable": False,
                     "error": str(e)
                 })
 
+        if flag == 1:
+            results.append({"Status":"Not Vulnerable"})
+
         # Save results to the database
-        self.save_sqli_results(base_url, parameter_name, results, user_id)
+        self.save_sqli_results(base_url, parameter_name, db_results, user_id)
 
         return results  # Return results for further processing or reporting
 
@@ -347,11 +350,9 @@ class APIScanner:
                     db.session.add(vulnerability)
 
             db.session.commit()
-            print(f"SQL Injection results successfully saved for endpoint: {endpoint}")
         except Exception as e:
             db.session.rollback()
-            print(f"Error saving SQL Injection results to the database: {e}")
-            
+
     def scan_api(self, endpoint):
         """
         Scan all endpoints for vulnerabilities.
