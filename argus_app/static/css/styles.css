@@ -1,5 +1,6 @@
 /* Global Styles */
 /* Fullscreen loader styles */
+
 #loader {
     position: fixed;
     top: 0;
@@ -317,6 +318,7 @@ a.button:hover {
     position: relative;
     z-index: 1;
     /* Ensure text appears on top of the background */
+
     padding: 20px;
 }
 
@@ -439,7 +441,7 @@ a.button:hover {
 #connect {
     padding: 30px 20px;
     background-color: #00bcd4;
-    color: #fff;
+    color: black;
     border-radius: 8px;
     margin-bottom: 20px;
     text-align: center;
@@ -512,10 +514,10 @@ footer nav a:hover {
 }
 
 .box {
-    border: 1px solid #ccc;
+    border: 1px #ccc;
     border-radius: 5px;
     padding: 10px;
-    background-color: #fff;
+    background-color: black;
 }
 
 #owasp-top-10 {
