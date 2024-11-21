@@ -22,7 +22,7 @@
 
         {% for key, value in owasp_top_10.items() %}
         <li>{{ key }}:
-            {% if value is iterable and not value|string %}
+            {% if value is iterable and not value is string %}
             <ul>
                 {% for subvalue in value %}
                 <li>{{ subvalue }}</li>
@@ -33,15 +33,17 @@
             {% endif %}
         </li>
         {% endfor %}
+
         {% endif %}
 
     </div>
     <div class="box" id="open-api-endpoints">
         <h3>Open API Endpoints</h3>
+        <a href=""></a>
         <!-- Open API content goes here -->
         {% if endpoints %}
         {% for item in endpoints %}
-        <li>{{ item }}</li>
+        <li><a href="{{ item }}">{{ item }}</a></li>
         {% endfor %}
         {% else %}
         No results yet...

@@ -25,26 +25,27 @@ def scanner():
         url = data.get('url')
         scanner = APIScanner()
         open_endpoints = scanner.scan_api(url)
+        another_open_endpoints = scanner.fuzz_directory(url)
         owasp_zap_results = [
             "mkc 1 baar",
             "mkc 2 baar",
             "mkc 3 baar",
         ]
-        owasp_top_10 = {
-            "name": "Darshan Soni",
-            "age": 21,
-            "skills": ["Python", "Cybersecurity", "PowerShell"],
-            "details": {
-                "email": "sonidarshan200@gmail.com",
-                "location": "Pune, Maharashtra"
-            }
-        }
+        # owasp_top_10 = {
+        #     "name": "Darshan Soni",
+        #     "age": 21,
+        #     "skills": ["Python", "Cybersecurity", "PowerShell"],
+        #     "details": {
+        #         "email": "sonidarshan200@gmail.com",
+        #         "location": "Pune, Maharashtra"
+        #     }
+        # }
         
         return render_template(
             'argus/scanner.html',
             endpoints=open_endpoints, 
             owasp_zap_results = owasp_zap_results,
-            owasp_top_10 = owasp_top_10
+            owasp_top_10 = another_open_endpoints
         )
     else:
         return render_template('argus/scanner.html')
@@ -59,6 +60,10 @@ def report():
 @app_blueprint.route('/login')
 def login():
     return render_template('argus/login.html')
+
+@app_blueprint.route('/test')
+def test():
+    return render_template('argus/test.html')
 
 @app_blueprint.route('/generate-report/<int:url_id>', methods=['GET'])
 def generate_report_route(url_id):

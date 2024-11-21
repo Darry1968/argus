@@ -54,7 +54,7 @@ class APIScanner:
                     pass
 
             if found == 0:
-                return "Nothing was found"
+                return []
         # after scan
         scan = ScanResult(
             original_endpoint=url,
@@ -68,7 +68,7 @@ class APIScanner:
 
         return endpoints
 
-    def fuzz_directory(url, user_id):
+    def fuzz_directory(self, url):
         wordlist_file = "db/dicc.txt"
 
         # Allowed status codes and storage
@@ -103,7 +103,7 @@ class APIScanner:
                 })
 
         # Save results to the database
-        save_results_to_db(url, endpoints, user_id)
+        # save_results_to_db(url, endpoints, user_id)
 
         return url_dict  # Return the result for additional processing if needed
 
