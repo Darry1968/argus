@@ -5,9 +5,10 @@ from reportlab.lib.utils import ImageReader
 import matplotlib.pyplot as plt
 import os
 
+
 def generate_report(data, output_path):
     """
-    Generates a PDF report with enhanced layout, mitigation strategies, and graphs.
+    Generates a multi-page PDF report with enhanced layout, mitigation strategies, and graphs.
 
     Args:
         data (dict): Dictionary containing URL data.
@@ -16,7 +17,13 @@ def generate_report(data, output_path):
     # Canvas settings
     c = canvas.Canvas(output_path, pagesize=letter)
     width, height = letter
-    c.setFont("Helvetica", 12)
+    current_y = height - 50  # Initial Y-axis position
+
+    def add_new_page():
+        nonlocal current_y
+        c.showPage()  # Add a new page
+        c.setFont("Helvetica", 12)
+        current_y = height - 50
 
     # Add Logo and Title
     logo_path = os.path.join("static", "css", "Logo.png")
@@ -27,44 +34,72 @@ def generate_report(data, output_path):
     c.drawString(160, height - 70, "ARGUS")
     c.setFont("Helvetica", 14)
     c.drawCentredString(width / 2, height - 90, "API SCAN REPORT")
+    current_y -= 100
 
     # Timestamp and URL
     c.setFont("Helvetica", 12)
-    c.drawString(50, height - 130, f"Report for URL: {data['original_url']}")
-    c.drawString(50, height - 150, f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    c.drawString(50, current_y, f"Report for URL: {data['original_url']}")
+    current_y -= 20
+    c.drawString(50, current_y, f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    current_y -= 40
+
+    # Add graphs below the timestamp
+    graph1_path = "argus_app/static/css/owasp_line_graph.png"
+    graph2_path = "argus_app/static/css/owasp_bar_graph.png"
+    create_graphs(graph1_path, graph2_path)
+
+    if os.path.exists(graph1_path):
+        c.drawImage(graph1_path, 50, current_y - 150, width=250, height=150)
+    if os.path.exists(graph2_path):
+        c.drawImage(graph2_path, 320, current_y - 150, width=250, height=150)
+
+    # Adjust current_y to immediately follow the graphs
+    current_y -= 180  # Reduced the gap to align with content starting immediately below the images
 
     # Vulnerabilities Section
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(50, height - 180, "Vulnerabilities Found:")
+    c.drawString(50, current_y, "Vulnerabilities Found:")
+    current_y -= 20
     vulnerabilities = data["vulnerabilities_found"]
     if vulnerabilities:
         for idx, vuln in enumerate(vulnerabilities, start=1):
+            if current_y < 50:
+                add_new_page()
+                c.drawString(50, current_y, "Vulnerabilities Found (Continued):")
+                current_y -= 20
             c.setFont("Helvetica", 12)
-            c.drawString(70, height - 200 - (idx * 20), f"- {vuln}")
+            c.drawString(70, current_y, f"- {vuln}")
+            current_y -= 20
     else:
         c.setFont("Helvetica", 12)
-        c.drawString(70, height - 200, "No vulnerabilities found.")
+        c.drawString(70, current_y, "No vulnerabilities found.")
+        current_y -= 20
+
+
+    if current_y < 150:
+        add_new_page()
 
     # Open Endpoints Section
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(50, height - 300, "Open Endpoints:")
+    c.drawString(50, current_y, "Open Endpoints:")
+    current_y -= 20
     endpoints = data["open_endpoints"]
     for idx, endpoint in enumerate(endpoints, start=1):
+        if current_y < 50:
+            add_new_page()
+            c.drawString(50, current_y, "Open Endpoints (Continued):")
+            current_y -= 20
         c.setFont("Helvetica", 12)
-        c.drawString(70, height - 320 - (idx * 20), f"- {endpoint}")
+        c.drawString(70, current_y, f"- {endpoint}")
+        current_y -= 20
 
-    # Add graphs
-    graph1_path = "static/owasp_line_graph.png"
-    graph2_path = "static/owasp_bar_graph.png"
-    create_graphs(graph1_path, graph2_path)
-    if os.path.exists(graph1_path):
-        c.drawImage(graph1_path, 50, height - 550, width=250, height=150)
-    if os.path.exists(graph2_path):
-        c.drawImage(graph2_path, 320, height - 550, width=250, height=150)
+    if current_y < 150:
+        add_new_page()
 
-    # Mitigation Strategies
+    # Mitigation Strategies Section
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(50, 100, "Basic Mitigation Strategies:")
+    c.drawString(50, current_y, "Basic Mitigation Strategies:")
+    current_y -= 20
     mitigation_points = [
         "1. Regularly update and patch software to fix known vulnerabilities.",
         "2. Implement input validation and sanitization to prevent injection attacks.",
@@ -73,11 +108,17 @@ def generate_report(data, output_path):
         "5. Conduct regular vulnerability scans and penetration testing to identify risks."
     ]
     for idx, point in enumerate(mitigation_points):
+        if current_y < 50:
+            add_new_page()
+            c.drawString(50, current_y, "Basic Mitigation Strategies (Continued):")
+            current_y -= 20
         c.setFont("Helvetica", 12)
-        c.drawString(70, 80 - (idx * 20), point)
+        c.drawString(70, current_y, point)
+        current_y -= 20
 
     # Save the report
     c.save()
+
 
 def create_graphs(graph1_path, graph2_path):
     """

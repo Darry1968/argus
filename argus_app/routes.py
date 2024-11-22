@@ -4,7 +4,7 @@ from .utils.report_generator import generate_report
 from models import db, ScanResult
 from .controllers import *
 import json
-import os
+import os, re
 
 app_blueprint = Blueprint(
     'app',
@@ -24,31 +24,37 @@ def scanner():
         data = request.form
         url = data.get('url')
         scanner = APIScanner()
+        api_pattern = r".*/api/([^?]+)\??.*$"
 
-        base_url,param = scanner.extract_base_url_and_params(url)
+        if re.match(api_pattern, url):
+            base_url,param = scanner.extract_base_url_and_params(url)
+            # IDOR scan
+            test_idor = scanner.test_idor(url,param,1)
+            
+            # SQL scan
+            test_sql = scanner.test_sql_injection(base_url,param,1)
 
-        # open_endpoints = scanner.scan_paths(url,1)
-        open_endpoints = {
-            "details": {
-                "email": "sonidarshan200@gmail.com",
-                "location": "Pune, Maharashtra"
+            owasp_top_10 = {
+            "IDOR": test_idor,
+            "SQL scan": test_sql
             }
+            open_endpoints = {
+                "Status":"While checking IDOR cannot scan for open endpoints"
             }
-        # IDOR scan
-        test_idor = scanner.test_idor(url,param,1)
-        
-        # SQL scan
-        test_sql = scanner.test_sql_injection(base_url,param,1)
+    
+        else:
+            open_endpoints = scanner.scan_paths(url,1)
+            owasp_top_10 = {
+            "IDOR": "No IDOR Found",
+            "SQL scan": "No SQL injection Found"
+            }
+
 
         owasp_zap_results = [
             "mkc 1 baar",
             "mkc 2 baar",
             "mkc 3 baar",
         ]
-        owasp_top_10 = {
-            "IDOR": test_idor,
-            "SQL scan": test_sql
-        }
         
         return render_template(
             'argus/scanner.html',
