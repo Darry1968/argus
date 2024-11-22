@@ -38,6 +38,7 @@ body {
     color: #bbb;
     text-align: left;
 }
+
 /* #api-endpoint {
     width: 350px;
     padding: 12px;
@@ -47,7 +48,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease-in-out; */
 
-#api-endpoint{
+#api-endpoint {
     width: 350px;
 }
 
@@ -108,6 +109,8 @@ body {
     min-width: 250px;
     max-width: 400px;
     text-align: left;
+    overflow: auto;
+    overflow-y: auto;
 }
 
 .result-box h3 {
@@ -151,17 +154,18 @@ body {
         max-width: 90%;
     }
 }
-#owasp-zap-results.result-box{
+
+#owasp-zap-results.result-box {
     width: 400px;
     height: 400px;
 }
 
-#open-api-endpoints.result-box{
+#open-api-endpoints.result-box {
     width: 400px;
     height: 400px;
 }
 
-#owasp-top-10.result-box{
+#owasp-top-10.result-box {
     width: 400px;
     height: 400px;
 }

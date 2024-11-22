@@ -71,8 +71,18 @@
             <h3>OWASP ZAP Results</h3>
             <ul>
                 {% if owasp_zap_results %}
-                {% for item in owasp_zap_results %}
-                <li>{{ item }}</li>
+                {% for key, value in owasp_zap_results.items() %}
+                <li>{{ key }}:
+                    {% if value is iterable and not value is string %}
+                    <ul>
+                        {% for subvalue in value %}
+                        <li>{{ subvalue }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    {{ value }}
+                    {% endif %}
+                </li>
                 {% endfor %}
                 {% else %}
                 <li>No results yet...</li>
