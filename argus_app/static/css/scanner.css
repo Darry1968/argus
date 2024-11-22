@@ -108,6 +108,8 @@ body {
     min-width: 250px;
     max-width: 400px;
     text-align: left;
+    overflow: auto;
+    overflow-y: auto;
 }
 
 .result-box h3 {

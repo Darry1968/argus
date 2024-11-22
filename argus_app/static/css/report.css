@@ -1,0 +1,123 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #00d1ff;
+    margin-bottom: 30px;
+}
+
+/* Report Section */
+.report-section {
+    padding: 50px 20px;
+    text-align: center;
+    background: #1a1a1a;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.report-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form Styling */
+.report-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.report-form label {
+    font-size: 1rem;
+    color: #bbb;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.report-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background: #333;
+    border: 1px solid #444;
+    color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.report-form select:focus {
+    border-color: #00d1ff;
+    outline: none;
+}
+
+.generate-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: #00d1ff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+.generate-button:hover {
+    background: #00a3cc;
+}
+
+/* Report Output Section */
+.report-output-section {
+    padding: 50px 20px;
+    background: #121212;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+#report-output{
+    background-color: #000;
+    margin: 0px;
+    border: #000;
+}
+.output-container {
+    max-width: 800px;
+    background-color: #000;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.output-title {
+    font-size: 2rem;
+    color: #00d1ff;
+    margin-bottom: 20px;
+}
+
+.output-content {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 100px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .report-container, .output-container {
+        width: 90%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .generate-button {
+        font-size: 0.9rem;
+    }
+}
