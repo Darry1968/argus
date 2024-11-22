@@ -3,25 +3,37 @@
 {% block title %}Report{% endblock %}
 
 {% block extra_scripts %}
+<link rel="stylesheet" href="{{ url_for('app.static', filename='css/report.css') }}">
 <script src="{{ url_for('app.static', filename='js/report.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
-<h1>Generate Report</h1>
-<form id="report-form">
-    <label for="scan-select">Select a Scan:</label>
-    <select id="scan-select">
-        {% for scan in scans %}
-        <option value="{{ scan.id }}">
-            Scan {{ scan.id }} - {{ scan.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
-        </option>
-        {% endfor %}
-    </select>
-    <button id="generate-report" class="btn btn-primary">Download Report</button>
-</form>
+<section class="report-section">
+    <div class="report-container">
+        <h2 class="section-title">Generate Report</h2>
+        <form id="report-form" class="report-form">
+            <div class="form-group">
+                <label for="scan-select">Select a Scan:</label>
+                <select id="scan-select" required>
+                    <option value="" disabled selected>Select a scan</option>
+                    {% for scan in scans %}
+                    <option value="{{ scan.id }}">
+                        Scan {{ scan.id }} - {{ scan.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button id="generate-report" class="generate-button">Download Report</button>
+        </form>
+    </div>
+</section>
 
-<section id="report-output">
-    <h2>Report</h2>
-    <div>No report generated yet...</div>
+<section class="report-output-section" id="report-output">
+    <div class="output-container">
+        <h2 class="output-title">Report</h2>
+        <div class="output-content">
+            <p>No report generated yet...</p>
+        </div>
+    </div>
 </section>
 {% endblock %}
