@@ -5,3 +5,7 @@ argus_app\__pycache__
 argus_app\static\reports\
 __pycache__
 argus_app/__pycache__/routes.cpython-311.pyc
+argus_app/__pycache__/controllers.cpython-312.pyc
+argus_app/__pycache__/controllers.cpython-312.pyc
+argus_app/__pycache__/routes.cpython-312.pyc
+argus_app/utils/__pycache__/scanner.cpython-312.pyc
