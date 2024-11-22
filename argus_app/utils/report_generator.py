@@ -31,7 +31,7 @@ def generate_report(data, output_path):
         logo = ImageReader(logo_path)
         c.drawImage(logo, 50, height - 100, width=100, height=50, mask="auto")
     c.setFont("Helvetica-Bold", 18)
-    c.drawString(160, height - 70, "ARGUS")
+    c.drawString(275, height - 70, "ARGUS")
     c.setFont("Helvetica", 14)
     c.drawCentredString(width / 2, height - 90, "API SCAN REPORT")
     current_y -= 100
