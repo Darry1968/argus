@@ -51,37 +51,8 @@ def scanner():
 
 
         owasp_zap_results = {
-            "scan_date": "2024-11-22",  # Date of the scan
-            "scan_duration": "30s",  # Duration of the scan
-            "vulnerabilities": [
-                {
-                    "vulnerability_type": "Cross-Site Scripting (XSS)",
-                    "severity": "Medium",
-                    "payload": "<script>alert('XSS')</script>",
-                    "evidence": "JavaScript execution detected in response",
-                    "remediation": "Sanitize and encode user inputs before rendering in the browser."
-                },
-                {
-                    "vulnerability_type": "Insecure HTTP Headers",
-                    "severity": "Low",
-                    "evidence": "Missing 'X-Content-Type-Options' and 'X-Frame-Options' headers",
-                    "remediation": "Add secure headers to the server configuration."
-                },
-                {
-                    "vulnerability_type": "Information Disclosure",
-                    "severity": "Low",
-                    "evidence": "Debug information exposed in the response body",
-                    "remediation": "Disable debug mode and ensure sensitive information is not exposed."
-                }
-            ],
-            "summary": {
-                "total_vulnerabilities": 3,
-                "high_severity": 1,
-                "medium_severity": 1,
-                "low_severity": 2,
-                "informational": 0
-            }
-    }
+            "test":"test results"
+        }
 
         
         return render_template(
